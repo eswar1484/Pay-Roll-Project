@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+    <style>
+        /* Simplified CSS for better readability */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .total-leave-days {
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .logout-button {
+            background-color: #dc3545;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ employee.name }}</h1>
+
+        <!-- Logout button -->
+        <a href="{% url 'logout' %}" class="button logout-button">Logout</a>
+
+        <!-- Apply for leave button -->
+        <a href="{% url 'apply_leave' %}" class="button">Apply for Leave</a>
+
+        <!-- Display total approved leave days -->
+        <div class="total-leave-days">
+            <h2>Total Approved Leave Days: {{ total_leave_days }}</h2>
+        </div>
+
+        <!-- Display leave requests -->
+        <h2>Leave Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for leave in leave_requests %}
+                <tr>
+                    <td>{{ leave.start_date }}</td>
+                    <td>{{ leave.end_date }}</td>
+                    <td>{{ leave.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Display payroll details -->
+        <h2>Payroll Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Total Salary</th>
+                    <th>Deduction Amount</th>
+                    <th>Net Salary</th>
+                    <th>Payment Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payroll in payrolls %}
+                <tr>
+                    <td>{{ payroll.month }}</td>
+                    <td>{{ payroll.total_salary }}</td>
+                    <td>{{ payroll.deduction_amount }}</td>
+                    <td>{{ payroll.net_salary }}</td>
+                    <td>{{ payroll.payment_status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

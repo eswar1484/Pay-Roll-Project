@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payroll Details</title>
+</head>
+<body>
+    <h1>Payroll Details</h1>
+    <ul>
+        {% for payroll in payrolls %}
+            <li>
+                Month: {{ payroll.month }}<br>
+                Total Salary: {{ payroll.total_salary }}<br>
+                Deduction: {{ payroll.deduction_amount }}<br>
+                Net Salary: {{ payroll.net_salary }}<br>
+                Payment Status: {{ payroll.payment_status }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'employee_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

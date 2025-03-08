@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager Dashboard</title>
+</head>
+<body>
+    <h1>Manager Dashboard</h1>
+    <h2>Employees</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Employee ID</th>
+            <th>Contact</th>
+            <th>Status</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.employee_id }}</td>
+            <td>{{ employee.contact }}</td>
+            <td>{{ employee.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'show_leave_requests' %}">Show Leave Requests</a>
+    <a href="{% url 'add_salary_job_type' %}">Add Job Type</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

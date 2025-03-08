@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply for Leave</title>
+</head>
+<body>
+    <h2>Apply for Leave</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ leave_form.as_p }}
+        <button type="submit">Apply</button>
+    </form>
+    <a href="{% url 'employee_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

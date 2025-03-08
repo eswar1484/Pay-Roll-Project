@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up as Employee</title>
+</head>
+<body>
+    <h2>Sign Up as Employee</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ employee_form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>

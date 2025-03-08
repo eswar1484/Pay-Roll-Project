@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Leave Requests</title>
+</head>
+<body>
+    <h1>Leave Requests</h1>
+    <table>
+        <tr>
+            <th>Employee</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for leave in leave_requests %}
+        <tr>
+            <td>{{ leave.employee.name }}</td>
+            <td>{{ leave.start_date }}</td>
+            <td>{{ leave.end_date }}</td>
+            <td>{{ leave.reason }}</td>
+            <td>{{ leave.status }}</td>
+            <td>
+                <form method="post" action="{% url 'manage_leave_request' leave.id %}">
+                    {% csrf_token %}
+                    <select name="status">
+                        <option value="Approved">Approve</option>
+                        <option value="Rejected">Reject</option>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'manager_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

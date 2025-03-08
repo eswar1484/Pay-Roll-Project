@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Leave Request</title>
+</head>
+<body>
+    <h1>Manage Leave Request</h1>
+    <p>Employee: {{ leave.employee.name }}</p>
+    <p>Start Date: {{ leave.start_date }}</p>
+    <p>End Date: {{ leave.end_date }}</p>
+    <p>Reason: {{ leave.reason }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="Approved">Approve</option>
+            <option value="Rejected">Reject</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'show_leave_requests' %}">Back to Leave Requests</a>
+</body>
+</html>
